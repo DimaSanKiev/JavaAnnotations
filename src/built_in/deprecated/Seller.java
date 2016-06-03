@@ -1,4 +1,4 @@
-package deprecated;
+package built_in.deprecated;
 
 import java.awt.Image;
 import java.util.List;

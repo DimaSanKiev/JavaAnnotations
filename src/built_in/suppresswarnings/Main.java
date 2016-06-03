@@ -1,4 +1,4 @@
-package suppresswarnings;
+package built_in.suppresswarnings;
 
 import java.io.Console;
 import java.util.List;

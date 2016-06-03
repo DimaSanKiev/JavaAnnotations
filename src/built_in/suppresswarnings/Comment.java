@@ -1,4 +1,4 @@
-package suppresswarnings;
+package built_in.suppresswarnings;
 
 public class Comment {
     private Long id;

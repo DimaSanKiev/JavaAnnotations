@@ -1,4 +1,4 @@
-package deprecated;
+package built_in.deprecated;
 
 public class Main {
     public static void main(String[] args) {
