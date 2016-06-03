@@ -1,5 +1,9 @@
 package own.docgen;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Doc {
 
     /** Description of class or method */
