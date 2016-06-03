@@ -1,6 +1,7 @@
 package own.docgen;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 public class DocProcessor {
     /**
@@ -23,29 +24,29 @@ public class DocProcessor {
         int classErrors = 0;
 
         // TODO: Does @Doc annotation appear on class?
-        if (true) {
+        if (clazz.isAnnotationPresent(Doc.class)) {
 
             // TODO: Loop over declared methods of class
-            for (Method method : new Method[]{}) {
+            for (Method method : clazz.getDeclaredMethods()) {
 
                 // TODO: Get method modifiers (returned as int that needs to be deciphered)
-                String modStr = null;
+                int modifierInt = method.getModifiers();
 
                 // TODO: Get method name
-                String methodName = null;
+                String methodName = method.getName();
 
                 // TODO: Is method non-private?
-                if (true) {
+                if (!Modifier.isPrivate(modifierInt)) {
                     int methodErrors = 0;
 
                     // Display method name
                     System.out.printf("%n%n\t%s:", methodName);
 
                     // TODO: Does @Doc annotation appear on method?
-                    if (true) {
+                    if (method.isAnnotationPresent(Doc.class)) {
 
                         // TODO: Get a reference to the actual annotation
-                        Doc doc = null;
+                        Doc doc = method.getDeclaredAnnotation(Doc.class);
 
                         // Does the number of items in param descriptions match
                         // the number of actual parameters?
@@ -105,9 +106,11 @@ public class DocProcessor {
 
         // TODO: Check if the number of parameter descriptions in the annotation
         // TODO: is less than the method's parameter count
-        if (true) {
+        int annotatedParamCount = doc.params().length;
+        int actualParamCount = method.getParameterCount();
+        if (annotatedParamCount < actualParamCount) {
             // TODO: Calculate the number of missing parameter descriptions
-            numMissing = 0;
+            numMissing = actualParamCount - annotatedParamCount;
         }
         return numMissing;
     }
@@ -122,6 +125,6 @@ public class DocProcessor {
     private static boolean hasReturnDescription(Method method, Doc doc) {
         // TODO: Return true when the method return type is void OR
         // TODO: the annotation return value description is not empty
-        return true;
+        return method.getReturnType().equals(Void.TYPE) || !doc.returnVal().isEmpty();
     }
 }

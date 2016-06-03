@@ -8,7 +8,7 @@ import java.lang.reflect.Modifier;
 public class Main {
     // TODO: Process the MathUtils class's annotations
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // Get a class object
         Class<?> clazz = MathUtils.class;
 
@@ -31,5 +31,9 @@ public class Main {
             String modsStr = Modifier.toString(mods);
             System.out.printf("\tmodifiers: %s%n", modsStr);
         }
+    }*/
+
+    public static void main(String[] args) {
+        DocProcessor.process(MathUtils.class);
     }
 }
